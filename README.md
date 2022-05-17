@@ -159,6 +159,8 @@ Commonly used HOF which accepts functions as arguments ==> forEach, filter, redu
 
 When a function returns a function; returned function has an access to all the members of outer function ==> closure
 
+var g = 100;
+
 function add(x, y) {
 	return x + y;
 }
@@ -178,7 +180,28 @@ tenAdder(3); // 13
 
 =========
 
+  // cpu intense ==> recursive uses stacks
+        function fibanocci(no) {
+            return (no == 0 || no == 1)? no : (fibanocci(no -1) + fibanocci(no -2));
+        }
 
+        console.time("1");
+            console.log(fibanocci(34));
+        console.timeEnd("1");
+        console.time("2");
+            console.log(fibanocci(34));
+        console.timeEnd("2");
+
+
+getEmployee(3); ==> hits server ==> API call ==> DB ==> data to JSON ==> send JSON to client
+
+getEmployee(3); ==> get from cache
+
+getEmployee(2); ==> hits server ==> API call ==> DB ==> data to JSON ==> send JSON to client
+
+In computing, memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again
+
+React.memo(); 
 
 =======
 ES2015 ==> ECMAScript 6 , ES 6
@@ -187,7 +210,7 @@ ESNext ==> ES 7
 Most of the current browsers support ES5
 https://caniuse.com/
 
-Code in ES6 or ES7 ==> Transcomiler [Tracuer / Babel] ==> ES5
+Code in ES6 or ES7 ==> Transcompiler [Tracuer / Babel] ==> ES5
 
 Babel is a free and open-source JavaScript transcompiler that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript that can be run by older JavaScript engines.
 
@@ -279,19 +302,137 @@ add();
 add(4,5);
 add(5);
 
-=========================
 
-https://rxmarbles.com/
+5) clone
 
-==
+var product = {"id":1,"name":"iPhone","price":124447.44,"category" : "mobile"};
 
-map ==> transform the data
+var ref = product;
+
+ref.price  = 9999; // reference
+
+product.price also changes
+
+var cpy = {...product}; // clone
+
+cpy.price = 12345; 
+
+--
+
+var data = [4,6,2,1];
+
+var elemCpy = [...data]; // clone
+
+-----
+
+6) Promise API
+
+Async opertions which will have any of the follwoing states
+
+a) state:pending; data :
+b) state:fulfilled; data : {...}
+c) state:rejected; data: error
+
+function doTask() {
+	// sync code
+}
+if function is sync
+
+let res = doTask(); // blocking call
+console.log("Bye!!!"); // gets executed only after doTask(); completes
+
+----
+
+function doTask() {
+	// promise api ==> side effects like API call
+}
+if function is promise api ==> async
+
+doTask().then(
+	(data) => console.log(data),
+	(err) => console.log(err);
+);
+console.log("Bye!!!"); // gets executed before Promise resolves or rejects
+
+========
+
+Promise.all() ==> aggregator app like MMT, HolidayIQ, 
+
+Promise.any() ==> CDN serving data
+
+================
+
+ 7) async and await
+ syntatical sugar for Promise Api
+
+Promise API callback hell:
+ connectToDatabase()
+ 	.then(con => {
+ 		getUsers(con).
+ 		then(users => {
+ 			getRoles(user).
+ 			then(role => {
+ 				createUI()
+ 			}) 
+ 		})
+ });
 
 
-action = (elem) => {
-         result.push(transformFn(elem));
-    };
+---
+Using fetch Promise API:
+fetch("http://jsonplaceholder.typicode.com/users")
+	.then(response => response.json())
+	.then(data => console.log(data));
 
-===================
+convert to async await
+ async function doTask() {
+            let response = await fetch("http://jsonplaceholder.typicode.com/users");
+            let data = await response.json();
+            console.log(data);
+        }
+
+doTask();
+
+------------------
+
+8) Generator
+	==> are functions with multiple return values
+
+function* saga() {
+	TASK1
+	TASK2
+	yield "result 1";
+	TASK3
+	TASK4
+	TASK5
+	yield "result 2";
+	TASK6
+	yield "result 3";
+}
+
+function* sagaExample() {
+	console.log("task1");
+	console.log("task2");
+	yield 100;
+	console.log("task3");
+	yield "good day!!!";
+	console.log("task4");
+	yield true;
+}
+
+let iter = sagaExample();
+iter.next(); // 100
+iter.next(); //good day!!!
+iter.next(); //true
+
+======
+
+9) ES 6 module system, classes [ pending]
+
+=========================================================================
+
+
+
+
 
 

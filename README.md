@@ -645,4 +645,79 @@ webpackexample> npm i webpack webpack-cli webpack-dev-server html-webpack-plugin
 
 console.log("Hello Webpack!!!");
 
-4) 
+4) package.json
+
+ "scripts": {
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
+}
+
+npm run dev
+or
+npm run prod
+
+
+==> creates "dist/main.js"
+
+5) using html-webpack-plugin
+HTML Webpack Plugin
+Plugin that simplifies creation of HTML files to serve your bundles
+
+index.html
+<script src="vendor.main.js"></script>
+<script src="cart.9t6dfgdfg2.js"></script>
+<script src="main.js"></script>
+
+
+webpack.config.js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "src", "index.html")
+        })
+    ]
+};
+
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Happy Learning!!!</h1>
+</body>
+</html>
+
+--
+
+$ npm run prod
+
+check the generated "dist/index.html";
+should contain <script src="main.js"></script>
+
+==================
+
+Babel:
+
+npm i @babel/core babel-loader @babel/preset-env -D
+
+@babel/preset-env is a smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s).
+
+babel.config.json
+{
+    "presets": [
+        "@babel/preset-env"
+    ]
+}
+
+Now I can use ES6/ES7 features which will be transpiled to ES5
+
+===========
+
+

@@ -431,8 +431,155 @@ iter.next(); //true
 
 =========================================================================
 
+NodeJS
+* platform with V8 JavaScript engine and libuv c/c++ apis for threads and async helpers, event loop
+
+Why use NodeJS?
+1) build traditional web application development like [ servlet/jsp, php, ] ==> serve pages to client
+2) build RESTful web services ==> serve JSON/ XML data to client [ Spring Boot, MVC .NET, Jersey]
+3) * Streaming API ==> OTT; netflix; prime; hotstar
+4) Realtime application ==> chatbot, dashboard updates, notifications, ....
+5) client side application development
+	
+NodeJS for clientside web application development
+
+1) I might use Typescript, DART, CoffeeScript, LiveScript or ES6/7 to write my code
+product.ts
+let product:Product = {}
+let name:string = "Tim";
+
+they have to be converted to "js" using transcompiler
+
+2) project contains many files [ 40~50 files]
+
+<script src="a.js"></script>
+<script src="b.js"></script>
+<script src="c.js"></script>
+<script src="d.js"></script>
+<script src="e.js"></script>
+..
+
+each <script> tag results in Network call 
+order matters [ e depends on d; d depends on c ;..]
+
+all files bundle ==> bundle.js
+<script src="bundle.js"></script>
+
+3) minify, uglify my code
+minfiy ==> remove whitespaces in code
+uglify ==> variables, functions  ==> shorten the name
+
+function mongooseDatabaseConnection() {
+
+}
+
+4) Need to run Unit testing of code
+5) Static code analysis ==> Linting
+
+===================================
+
+one example of Nodejs project
+
+Package managers:
+* NPM
+* YARN
+* PNPM
+
+1) tool to download dependecies for your project
+
+npm install jquery
+yarn add jquery
+pnpm install jquery
+
+2) to run scripts
+
+npm start
+npm test
+npm run build
+
+3) to publish
+
+npm publish
+
+Similar to Maven/gradle/PIP
+
+---
+
+nodeexample>npm init --y
+
+this creates package.json [similar to pom.xml for java maven]
+
+nodeexample>npm i lodash
+
+nodeexample>npm i mocha chai request --D
 
 
+"dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "request": "^2.88.2"
+  }
+
+"node_modules" folder where dependencies and transitive-dependency are downloaded
+
+--
+Team member:
+
+nodeexample>npm install
+
+=========
+
+ "scripts": {
+    "test": "mocha --reporter spec"
+  },
+
+  $npm test
+
+=============
+
+Module System
+1) IIFE ==> pure vanilla Js module system
+
+var ShopModule = (
+	var data = 100;
+	function doTask() {
+
+	}
+	function private() {
+
+	}
+	return {
+		data:data,
+		doTask:doTask
+	}
+)();
+
+
+var CustomerModule = (
+	var data = 999;
+	function doTask() {
+
+	}
+	 
+	return {
+		data:data,
+		doTask:doTask
+	}
+)();
+
+CustomerModule.doTask();
+ShopModule.doTask();
+CustomerModule.data; // 999
+ShopModule.data; // 100
+
+2) CommonJS module system ==> default used by NodeJS platform
+3) ESM ==> ES6/7 module system
+4) UMD
+5) System
+6) AMD
 
 
 

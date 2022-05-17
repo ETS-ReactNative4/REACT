@@ -600,4 +600,49 @@ JavaScript Unit testing Frameworks:
 
 
 
+https://www.chaijs.com/
+Assertion library
 
+AAA ==> Assemble, Action, Assert
+
+$ npm test
+
+===========================================
+
+
+Webpack
+
+JavaScript build tools
+* automate tasks like transcompile, minfiy, tests, bundle, ....
+
+ Grunt, Gulp, Webpack
+ 
+ Grunt is a JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, compilation, unit testing, and linting. 
+
+webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, ...
+
+Angular
+ng new myapp [ internally it uses webpack]
+
+react
+npx create-react-app myapp [ uses webpack]
+
+tsdx create myapp [ webpack]
+
+===========
+
+Webpack example
+
+1) create package.json
+
+webpackexample> npm init --y
+
+2) install dependencies
+
+webpackexample> npm i webpack webpack-cli webpack-dev-server html-webpack-plugin -D
+
+3) create src/index.js
+
+console.log("Hello Webpack!!!");
+
+4) 

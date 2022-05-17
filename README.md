@@ -576,10 +576,28 @@ CustomerModule.data; // 999
 ShopModule.data; // 100
 
 2) CommonJS module system ==> default used by NodeJS platform
+module.exports.add = (x, y) => x + y;
+
+const compute = require('./compute');
+
 3) ESM ==> ES6/7 module system
 4) UMD
 5) System
 6) AMD
+
+
+nodeexample>node app/server.js
+
+
+>npm config list
+
+========================================
+
+JavaScript Unit testing Frameworks:
+1) Mocha
+2) JEST ==> RTL built on JEST
+3) Jasmine ==> ATL built on Jasmine
+
 
 
 

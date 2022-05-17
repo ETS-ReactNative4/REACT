@@ -211,6 +211,26 @@ doTask();
 doTask(1, 2);
 doTask(3,6,11);
 
+---------------------
+
+4) Arrow operator
+
+function add(x = 10,y = 10) {
+	return x + y;
+}
+ 
+let add = (x,y) => {
+	return x + y;
+}
+
+or
+
+let add = (x,y) => x + y;
+
+
+add();
+add(4,5);
+add(5);
 
 
 

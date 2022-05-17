@@ -716,8 +716,33 @@ babel.config.json
     ]
 }
 
-Now I can use ES6/ES7 features which will be transpiled to ES5
+Now I can use ES6/ES7 features which will be transpiled to ES5 by Babel
 
 ===========
+
+npm run dev
+
+asset main.js 6.84 KiB [compared for emit] (name: main)
+asset index.html 278 bytes [compared for emit]
+runtime modules 670 bytes 3 modules
+cacheable modules 2.1 KiB
+  ./src/index.js 222 bytes [built] [code generated]    
+  ./src/Person.js 1.51 KiB [built] [code generated]    
+  ./src/compute.js 387 bytes [built] [code generated]  
+webpack 5.72.1 compiled successfully in 2021 ms        
+
+--
+
+npm run prod
+ 
+asset main.js 1.08 KiB [emitted] [minimized] (name: main)
+asset index.html 247 bytes [emitted]
+orphan modules 1.88 KiB [orphan] 2 modules
+./src/index.js + 2 modules 2.1 KiB [built] [code generated]
+webpack 5.72.1 compiled successfully in 2547 ms
+
+====================================
+
+
 
 

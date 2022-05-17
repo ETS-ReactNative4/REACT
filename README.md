@@ -133,6 +133,53 @@ while(true) {
 	}
 }
 
+=========
+
+HOF ==> High Order Function
+* function accepting function as argument
+* function returning a function
+==> treat function as first class member, just like primitive or object
+
+helps in apply OCP of SOLID design principle
+Open and Close principle ==> code is closed for a change; but open for extension
+
+var data = [5,2,51,11];
+
+for(let i = 0; i < data.length; i++) {
+	console.log(data[i]);
+}
+
+for(let i = 0; i < data.length; i++) {
+	 alert(data[i]);
+}
+
+Commonly used HOF which accepts functions as arguments ==> forEach, filter, reduce, map
+
+--
+
+When a function returns a function; returned function has an access to all the members of outer function ==> closure
+
+function add(x, y) {
+	return x + y;
+}
+
+function adder(base) {
+	return function(value) {
+		return base + value;
+	}
+}
+
+
+let fiveAdder = adder(5); // closure base = 5
+let tenAdder = adder(10); // closure base = 10
+fiveAdder(2); // 7
+fiveAdder(12); // 17
+tenAdder(3); // 13
+
+=========
+
+
+
 =======
 ES2015 ==> ECMAScript 6 , ES 6
 ESNext ==> ES 7
@@ -213,7 +260,7 @@ doTask(3,6,11);
 
 ---------------------
 
-4) Arrow operator
+4) Arrow operator and default argument
 
 function add(x = 10,y = 10) {
 	return x + y;
@@ -232,8 +279,19 @@ add();
 add(4,5);
 add(5);
 
+=========================
+
+https://rxmarbles.com/
+
+==
+
+map ==> transform the data
 
 
+action = (elem) => {
+         result.push(transformFn(elem));
+    };
 
+===================
 
 

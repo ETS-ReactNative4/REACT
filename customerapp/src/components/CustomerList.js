@@ -39,7 +39,13 @@ export default class CustomerList extends Component {
    
     //behaviour
     deleteCustomer(id) {
-
+        let custs = this.state.customers.filter(c => c.id !== id);
+        // this.state.customers = custs;
+        // don't do ==> this.state.customers = custs;
+        //async update of state
+        this.setState({
+            customers: custs
+        });
     }
     filterCustomers(txt) {
 
@@ -48,7 +54,10 @@ export default class CustomerList extends Component {
         return <div>
             <Filter />
             {
-                this.state.customers.map( c => <CustomerRow key={c.id} customer={c}/>)
+                this.state.customers.map( c => <CustomerRow 
+                    key={c.id} 
+                    customer={c} 
+                    delEvent={(id) => this.deleteCustomer(id)}/>)
             }
         </div>
     }

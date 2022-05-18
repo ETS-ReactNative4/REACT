@@ -1155,12 +1155,116 @@ With React:
 $ npm start
 
 ===============
+CustomerRow
+<button type="button" onClick={() => this.deleteRow(id)}>&times;</button>
+
+    deleteRow(id) {
+        console.log("Customr Row", id);
+    }
+
+==========
+
+<ul>
+	<li>One</li>
+	<li>Two</li>
+<ul>
+
+	VDOM
+
+	{
+		"type": "ul",
+		"children": [
+				{
+					"type": "li",
+					"children" : "One"
+				},
+
+				{
+					"type": "li",
+					"children" : "Two"
+				},
+		]
+	}
+     
+--
+We try to add "Three" ==> Prepand
+
+{
+		"type": "ul",
+		"children": [
+				{
+					"type": "li",
+					"children" : "Three"
+				},
+				{
+					"type": "li",
+					"children" : "One"
+				},
+
+				{
+					"type": "li",
+					"children" : "Two"
+				},
+		]
+	}
 
 
+<u>
+	<li>Three</li>
+	<li>One</li>
+	<li>Two</li>
+</u>
+
+document.createElement("li") ; ==> three times
+
+==============
+
+With Key
 
 
+	{
+		"type": "ul",
+		"children": [
+				{
+					"type": "li",
+					"children" : "One",
+					"key" : 1
+				},
+
+				{
+					"type": "li",
+					"children" : "Two",
+					"key" : 2
+				},
+		]
+	}
 
 
+	{
+		"type": "ul",
+		"children": [
+				{
+					"type": "li",
+					"children" : "Three",
+					"key" : 3
+				},
+				{
+					"type": "li",
+					"children" : "One",
+					"key" : 1
+				},
 
+				{
+					"type": "li",
+					"children" : "Two",
+					"key" : 2
+				},
 
+		]
+	}
+
+diffs algorithm runs
+document.prepand("li" with three);
+
+==============================================
 

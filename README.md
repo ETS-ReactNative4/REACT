@@ -1062,8 +1062,20 @@ class components
 import {Component} from 'react';
 
 class ProductList extends Component {
-	state
-	behaviour
+	state = {
+		products: []
+	}
+	constructor(props) {
+		super(props);
+	}
+	removeProduct() {
+
+	}
+
+	editProduct() {
+
+	}
+	// returns JSX like function component return type
 	render() {
 		return <div>
 
@@ -1085,6 +1097,65 @@ credit(amt);
 debit(amt);
 
 =====================
+
+DOM Button;
+color, caption, size ==> state
+behaiour=> onClick(), onmouseOver(), ...
+
+
+====
+
+npx create-react-app customerapp
+
+OR
+
+npm i yarn -g
+yarn create react-app customerapp
+
+==========================================
+
+  "react": "^18.1.0",
+  "react-dom": "^18.1.0",
+
+ "react-scripts": "5.0.1", ==> wrapper to run webpack cli
+
+ ==========
+index.js
+
+ upto React version <18
+
+ import ReactDOM from 'react-dom';
+
+ ReactDOM.render(<App/>, document.getElementById("root"));
+
+
+ form Version 18+
+
+import ReactDOM from 'react-dom/client';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <App />
+);
+
+===============================
+
+.App {
+  text-align: center;
+}
+
+without react: <div class="App">
+
+With React:	
+ <div className="App">
+
+ In React "class" is a keyword to declare a class components; hence we use "className" to apply "css"
+
+
+$ npm start
+
+===============
+
 
 
 

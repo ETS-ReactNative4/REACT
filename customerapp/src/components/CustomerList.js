@@ -37,6 +37,10 @@ export default class CustomerList extends Component {
         ],
     };
    
+    constructor(props){
+        super(props);
+        this.state.complete = this.state.customers;
+    }
     //behaviour
     deleteCustomer(id) {
         let custs = this.state.customers.filter(c => c.id !== id);
@@ -47,12 +51,17 @@ export default class CustomerList extends Component {
             customers: custs
         });
     }
+    
     filterCustomers(txt) {
-
+        let custs = this.state.complete
+            .filter(c => c.lastName.toUpperCase().indexOf(txt.toUpperCase()) >= 0);
+            this.setState({
+                customers: custs
+            });
     }
     render() {
         return <div>
-            <Filter />
+            <Filter filterEvent={this.filterCustomers.bind(this)}/>
             {
                 this.state.customers.map( c => <CustomerRow 
                     key={c.id} 

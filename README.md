@@ -1042,3 +1042,54 @@ ReactDOM.render(<ProductList title="List of Products" products={data} />, docume
 
 ```
 
+Problem statement as Task
+
+recipes.png
+recipes-json.txt
+
+=============
+
+npx create-react-app customerapp
+
+============================
+class Component
+Build application , event handling, unit testing and E2E
+
+===========================================================
+
+class components
+
+import {Component} from 'react';
+
+class ProductList extends Component {
+	state
+	behaviour
+	render() {
+		return <div>
+
+		</div>
+	}
+}
+
+render() ==> similar to what we returns from functional components
+
+OOP
+
+Object contains state and behaviour
+state of an object is mutated by behaviour/actions/methods
+
+BankingAccount:
+balance; // state
+
+credit(amt);
+debit(amt);
+
+=====================
+
+
+
+
+
+
+
+

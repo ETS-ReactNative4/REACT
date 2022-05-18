@@ -1015,6 +1015,7 @@ function Welcome({title, location}) {
 https://reactjs.org/docs/thinking-in-react.html
 UI - UX ==> Wireframe ==> Layers
 
+```
 var data = [
 {"id":1,"name":"iPhone","price":124447.44,"category" : "mobile"},
 {"id":2,"name":"Onida","price":4444.44,"category" : "tv"},
@@ -1039,4 +1040,5 @@ function ProductRow({product}) {
 
 ReactDOM.render(<ProductList title="List of Products" products={data} />, document.getElementById("root"));
 
+```
 

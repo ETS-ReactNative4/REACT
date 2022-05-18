@@ -8,7 +8,11 @@ export default class CustomerRow extends Component {
         let {id, firstName, lastName} = this.props.customer;
         return <div>
             {firstName} {lastName}
-            <button type="button">&times;</button>
+            <button type="button" onClick={() => this.deleteRow(id)}>&times;</button>
         </div>
+    }
+
+    deleteRow(id) {
+        console.log("Customr Row", id);
     }
 }

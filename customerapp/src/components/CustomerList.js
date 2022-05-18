@@ -48,7 +48,7 @@ export default class CustomerList extends Component {
         return <div>
             <Filter />
             {
-                this.state.customers.map( c => <CustomerRow customer={c}/>)
+                this.state.customers.map( c => <CustomerRow key={c.id} customer={c}/>)
             }
         </div>
     }

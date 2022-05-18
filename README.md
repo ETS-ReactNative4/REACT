@@ -809,3 +809,136 @@ devServer: {
  npm start
 
  http://localhost:8080/
+
+ ======================================
+
+ Optimization
+
+ index.html
+
+ <script src="bundle.js"></script>
+
+ a single bundle for the entire application is not appropriate
+
+ lead to FCP issues
+
+ https://webpack.js.org/configuration/optimization/#root
+
+ =================================================================
+
+ React
+
+ https://codepen.io/
+
+ playground for react
+
+
+Rendering ==> data to presentation
+
+SSR ==> Server Side Rendering [server sends rendered HTML page to client]
+* Pros ==> faster, client can be thin clients
+* Cons ==> Can;t have different types of clients [ mobile, web, standalone, tv]
+
+* Servlet, JSP, JSF, Themyleaf 
+* ASP, ASP.NET
+* PHP
+* CGI
+* NodeJS with ExpressJS and templates like [ EJS, PUG, JADE, Handlebars, Mustache]
+
+CSR ==> Client Side Rendering [ server sends the representation of data [ JSON / CSV / XML]] ==> RESTful / GraphQL
+* client applications are going to render the representation servered for server
+ [TV, Mobile, Web, Standalone ]
+
+Webapplication for CSR:
+* Library like jQuery and templates like Handlebars, Mustache, underscore, or plain AJAX and DOM handle
+	document.createElement("div")
+	document.appendChild()
+
+Issues with above way to rendering for SPA [ only one html page for entire application, but many views]:
+
+1) Data binding [ one way or two-way]
+	done using interpolation code
+	{{name}}
+	<%= name %>
+	#name
+
+	<input type="text" value="" />
+
+2) Modularize the code [ customermodule, productmodule, payment module, ordermodule, ...]
+
+3) Router
+	3.1) different urls ==> different views [ SEO ]
+	http://server.com
+
+		should render landing page
+
+	http://server.com/mobiles/
+		should render mobiles
+	http://server.com/mobiles/iPhone13
+		should render iPhone
+	http://server.com/mobiles/OnePlus
+	http://server.com/tvs
+
+	3.2) Bookmark
+	3.3) Navigate between views [ back and Prev]
+	3.4) Protect routes
+		http://server.com/cart
+	3.5) lazy load modules based on route selection
+
+---
+
+* BackboneJS --> library using MVC pattern [ Model and Controller support] for Views ==> [UnderScore, jquery, Mustache]
+* AngularJS --> Framework 
+* React --> View library [State management --> Model --> 3rd party]
+* Angular --> zone.js --> Framework
+
+====================================================
+
+codepen.io
+
+HTML
+<div id="root"></div>
+
+
+Settings:
+
+JS:
+1) Babel as preprocessor
+Babel includes JSX processing. [ JavaScript + XML ]
+
+2) extenal libraries
+https://cdnjs.cloudflare.com/ajax/libs/react/18.1.0/umd/react.production.min.js
+https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.1.0/umd/react-dom.production.min.js
+
+
+Behaviour:
+
+Save-automatically : off
+Update: off
+
+Save & close
+
+==========================================
+
+
+React.createElement("h1", {style: {'color':'red'}}, "Welcome to React World!!!");
+
+creates React Node ==> similar to DOM [ Document Object Model]
+
+
+
+ReactDOM.render(Welcome, document.getElementById("root"));
+
+other popular renders are:
+react-tv
+react-native
+..
+
+=====================================
+
+Resume @ 11:20 after Tea Break
+
+
+
+
+

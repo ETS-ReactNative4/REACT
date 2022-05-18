@@ -1268,3 +1268,80 @@ document.prepand("li" with three);
 
 ==============================================
 
+Whenever state or props changes ==> Reconcillation happens ==> diffs algorithim based on vdoms ==> render()
+
+ this.setState({
+     customers: custs
+ });
+
+===============================================
+
+let ob = {
+	name: "Peter";
+}
+
+let p = {
+	"name": "iPhone",
+	"update": function(d) {
+		this.name = d;
+	}
+}
+ 
+p.update("Oppo");
+
+
+let ref = p.update; // gets function definition of "update"
+
+ref("samsung"); // within update() ==> context is lost [ this is no longer pointing to "p"]
+
+==
+
+let r = p.update.bind(ob);
+r("test");
+
+==============
+
+data
+Rachel green
+Monica Geller
+Ross Geller
+Chandler Bing
+
+text box : Geller
+
+filtered data:
+Monica Geller
+Ross Geller
+
+
+text box : Bing
+Chandler Bing
+
+=======================================================================
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind
+
+https://www.w3schools.com/js/js_function_bind.asp
+
+=====================
+
+
+Task for Today:
+[
+{"id":1,"name":"iPhone","price":124447.44,"category" : "mobile"},
+{"id":2,"name":"Onida","price":4444.44,"category" : "tv"},
+{"id":3,"name":"OnePlus 6","price":98444.44,"category" : "mobile"},
+{"id":4,"name":"HDMI connector","price":2444.00,"category" : "computer"},
+{"id":5,"name":"Samsung","price":68000.00,"category" : "tv"}]
+
+ProductList, ProductRow, Search
+
+search by category
+delete a product
+
+=================================
+
+
+customerapp> npm i cypress
+
+

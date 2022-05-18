@@ -743,6 +743,69 @@ webpack 5.72.1 compiled successfully in 2547 ms
 
 ====================================
 
+Day 2
+
+JS, JS engine, Event loop, callback queue, WebAPI / Libuv
+
+HOF ==> Function accepts function as argument; function return a function [ closure ]
+ 
+ES2015 / ES6
+* Arrow, scope variables, destructuring, spread operator, clone,
+Promise, async and await, generators, ES6 module system, classes
+
+NodeJS 
+CommonJS module system [ module.exports and require()]
+package.json, npm
+dependencies and devDependencies
+
+Webpack ==> JS build tool
+* webpack.config.js
+	"src" will be source folder and "dist" will be output folder by default.
+	"main.js" is the default bundle file
+* HtmlWebpackPlugin
+* babel ==> @babel/core @babel/loader [ ES6 or higher to ES5 version]
+@babel/preset-env ==> polyfills for browsers which can;t understand the transpiled code
 
 
+---
 
+<link rel="stylesheet" href="styles.css">
+
+npm i css-loader style-loader -D
+
+css-loader:
+
+index.js
+
+@import './styles.css'
+
+
+style-loader:
+<style>
+	.body {
+		background: lavender;
+	}
+</style>
+
+================
+
+DevServer
+webpack-dev-server can be used to quickly develop an application.
+
+webpack.config.js
+
+devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    compress: true,
+    port: 9000,
+  }
+
+
+  If above config is not done ==> it uses 8080 as default port
+ "start" : "webpack serve --mode production",
+
+ npm start
+
+ http://localhost:8080/

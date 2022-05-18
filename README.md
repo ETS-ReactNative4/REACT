@@ -936,9 +936,107 @@ react-native
 
 =====================================
 
-Resume @ 11:20 after Tea Break
+const diffs = [
+	{
+		newNode: { "1"},
+		oldNode: { "One"},
+		index: 0
+	},
+	{
+		newNode: { "Three"},
+		index: 2
+	}
+]
+
+diffs.forEach( elem => {
+	if(diff.oldNode) {
+			document.replaceHild(elem.newNode, elem.index);
+	} else {
+			document.appendChild(elem.newNode);
+	}
+
+});
+
+ Reconciliation is the process through which React updates the Browser DOM.
+
+ ===========================================================
 
 
+React.createElement("ul", null, React.createElement("li", null, "One"), React.createElement("li", null, "Two"));
 
+To create React elements / Node we can use
+* Functional components ==> javascript functions which return JSX
+* Class Components ==> javascript class with render() method returning JSX
+
+The Returned JSX is converted to React.createElement() by Babel
+
+function Welcome() {
+  return <ul>
+       		<li>One</li>
+       		<li>Two</li>
+    	</ul>
+}
+console.log(Welcome);
+console.log(Welcome());
+ReactDOM.render(<Welcome />, document.getElementById("root"));
+
+================================================
+
+<img src="logo.gif" width="100px" height="50px" />
+
+src, width, height which are attributes of DOM ; In React we term them as props
+
+* props
+
+mechanism where parent passes data to child
+
+{variable} ==> interpolation
+
+function Welcome(props) {
+  return  <div>
+        	<h1>{props.title}</h1>
+   			<h3>{props.location}</h3>
+    	</div>
+}
+
+ReactDOM.render(<Welcome title="Welcome to React" location="Virtual Training"/>, document.getElementById("root"));
+
+
+---
+
+function Welcome({title, location}) {
+  return  <div>
+        	<h1>{title} </h1>
+    		<h3>{location}</h3>
+       </div>
+}
+
+---------------------------------------------
+https://reactjs.org/docs/thinking-in-react.html
+UI - UX ==> Wireframe ==> Layers
+
+var data = [
+{"id":1,"name":"iPhone","price":124447.44,"category" : "mobile"},
+{"id":2,"name":"Onida","price":4444.44,"category" : "tv"},
+{"id":3,"name":"OnePlus 6","price":98444.44,"category" : "mobile"},
+{"id":4,"name":"HDMI connector","price":2444.00,"category" : "computer"},
+{"id":5,"name":"Samsung","price":68000.00,"category" : "tv"}];
+
+function ProductList({title, products}) {
+  return <div>
+ 		<h1>{title}</h1>
+ 		{
+ 			products.map(product => <ProductRow product={product}/>)
+ 		}
+  </div>
+}
+
+function ProductRow({product}) {
+  return <div>
+  		{product.name}, {product.price}, {product.category}
+  </div>
+}
+
+ReactDOM.render(<ProductList title="List of Products" products={data} />, document.getElementById("root"));
 
 

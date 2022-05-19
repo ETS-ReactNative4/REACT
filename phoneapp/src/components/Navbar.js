@@ -8,7 +8,7 @@ class Navbar extends Component {
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
                 <Link to="/">
                     <i className="navbar-brand">
-                        Nokia
+                        SG
                     </i>
                 </Link>
                 <ul className="navbar-nav align-items-center">
@@ -20,7 +20,7 @@ class Navbar extends Component {
             </ul>
             
             <Link to="/cart" className="ml-auto">   
-                <Button >
+                <Button>
                     <span className="mr-2">
                     <i className="fas fa-cart-plus" />
                      My Cart

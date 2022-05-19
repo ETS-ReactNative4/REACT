@@ -1463,7 +1463,146 @@ https://javascript.info/regular-expressions
 ==============================================================
 
 
+E2E ==> End To End Testing on Running application [ selenium, cypress , protractor]
+
+npm i cypress
+
+"e2e" : "cypress open"
+
+--
+
+customerapp> npm start
+customerapp> npm run e2e
+
+cypress.json
+{
+    "testFiles" : "**/*.spec.js",
+    "integrationFolder" : "e2e",
+    "baseUrl" : "http://localhost:3000/"
+}
 
 
 
+=========================================
 
+npx create-react-app phoneapp
+
+phoneapp> npm install styled-components react-router-dom bootstrap
+ 
+* styled-components
+
+
+const Button = styled.button`
+  /* Adapt the colors based on primary prop */
+  background: ${props => props.primary ? "palevioletred" : "white"};
+  color: ${props => props.primary ? "white" : "palevioletred"};
+
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+render(
+  <div>
+    <Button>Normal</Button>
+    <Button primary>Primary</Button>
+  </div>
+);
+
+
+* react-router-dom
+
+To SPA ==> 
+1) differnt URLS should render different views
+2) Lazy load modules
+
+<Routes>
+      <Route path="/" element={<App />}>
+        <Route index element={<Home />} />
+        <Route path="teams" element={<Teams />}>
+          <Route path=":teamId" element={<Team />} />
+          <Route path="new" element={<NewTeamForm />} />
+          <Route index element={<LeagueStandings />} />
+        </Route>
+      </Route>
+    </Routes>
+
+    http://localhost:3000/ ==> renders <App />
+    http://localhost:3000/teams/3 ==> renders <Team />
+    http://localhost:3000/teams/new ==> renders <NewTeamForm />
+    http://localhost:3000/teams/ ==> <LeagueStandings />
+
+
+
+* bootstrap ==> RWD
+Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development.
+* RWD
+* Navbar
+* Card
+
+* font-awesome ==> include CDN in index.html
+for icons
+
+
+* React Context
+
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+
+* axios
+	to make API calls from react to RESTful web server to fetch JSON
+
+=================================================================================
+var PersonContext = React.createContext();
+
+class PersonProvider extends React.Component {
+  state = {
+    name : 'Smith',
+    email : "",
+     update : this.update.bind(this)
+  };
+  
+  update(email) {
+    this.setState({
+        "email": email
+    });
+   }
+  
+  render() {
+    return <PersonContext.Provider value={this.state}>
+        {this.props.children}
+      </PersonContext.Provider>
+  }
+}
+
+
+class App extends React.Component{
+  render() {
+    return <PersonProvider>
+        <First />
+       </PersonProvider>
+  }
+}
+
+
+class First extends React.Component {
+  render() {
+     return <Second/>
+  }
+}
+
+ReactDOM.render(<App/>, document.getElementById("root"))
+
+
+<PersonProvider>
+	<A/>
+	<B/>
+	<C/>
+</PersonProvider>
+
+<PersonProvider>
+	<D/>
+	<E/>
+</PersonProvider>

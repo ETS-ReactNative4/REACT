@@ -1433,5 +1433,37 @@ getBy* throws an error if the element is not found and queryBy* does not and ret
 =========================
 
 
+Testing Filter:
+
+function filter(elems, predicate) {
+    var result = [];
+    forEach(elems, elem => {
+        if(predicate(elem)) {
+            result.push(elem);
+        }
+    });
+    return result;
+}
+
+
+test code:
+
+const predicateMock = jest.fn(elem => elem % 2 == 0);
+
+const data = [3,5,6,2];
+
+const result = filter(data, predicateMock);
+expect(result.length).toBe(2);
+
+==================================================================================
+
+https://eloquentjavascript.net/09_regexp.html
+https://javascript.info/regular-expressions
+
+==============================================================
+
+
+
+
 
 

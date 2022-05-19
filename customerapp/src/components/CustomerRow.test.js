@@ -6,6 +6,7 @@ import CustomerRow from './CustomerRow';
 // delEvent={(id) => this.deleteCustomer(id)}/>
 describe("testing customer row", () => {
     let callback = jest.fn(); // mock callback function
+    // let cb = jest.fn(arg => arg * 2);
     let c = {
         id:45,
         "firstName" : "Lady",

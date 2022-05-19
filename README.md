@@ -1340,8 +1340,91 @@ search by category
 delete a product
 
 =================================
-
+ 
+Day 3:
 
 customerapp> npm i cypress
+
+
+Recap:
+npx create-react-app customerapp
+=> creates a scafollding code with react-scripts to use "webpack"
+=> index.js and App.js 
+
+"start", "test", "build" and "eject" scripts are laready configured
+
+npm start ==> runs webpack-dev-server in development mode on port 3000
+
+Class Component and Functional Components
+
+* state and behaviour
+* setState({
+	stateVariable: value
+  })
+
+  this is going to update the state asynchronoulsy and triggers reconcillation 
+
+  React Develpoment Tools chrome extension
+
+* Event handling onClick, onChange, onSubmit, onMouseOver, onMouseHover, ...
+	doTask() {
+
+	}
+
+	1) <button onClick={this.doTask()}>
+			This way of binding is wrong; because as soon as view is rendered the doTask() method is invoked
+			i.e., before you click the button
+
+	2) <button onClick={this.doTask}>
+			This is also not correct, because the "context" is lost;
+			i.e., within doTask() => "this" is undefined;
+			this function doTask() if "this" pointer is not used this way of binding works
+	3) <button onClick={this.doTask.bind(this)}>
+			Correct way of binding
+			"Context" is retained using bind; "this" refers to the component where this line of code exists
+	4) <button onClick={() => this.doTask()}>
+			Another way of binding using Arrow functions; works fine; prefer "3" instead of "4" for performance
+
+
+* Reconillation happens when props and state changes [setState]
+
+---
+
+React Unit testing components
+
+* RTL ==> React Testing Library built on top of JEST
+
+* Older versions of REact used Enzyme for testing components [ doesn't have support for latest react libarary]
+
+ "test": "react-scripts test"
+
+ npm test
+
+ import { render, screen } from '@testing-library/react';
+
+ screen api has the following methods
+ 1) screen.getByText(/customer application/i);
+ returns "h1" because it holds
+  <h1>Customer Application running</h1>
+
+ 2) screen.getByPlaceHolderText("search by name");
+ returns
+  <input
+              placeholder="search by name"
+              type="text"
+            />
+
+3) screen.getByRoleName("button");
+returns first button
+
+ByRoleName() to get form elements ==> button, select, radio, input, textarea
+
+All the above methods we also have 
+1) queryByRole("button") 
+2) findByRole("button") ==> use this in case if components are created async way [ Promise ]
+
+getBy* throws an error if the element is not found and queryBy* does not and returns null.
+
+==========
 
 

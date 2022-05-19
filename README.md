@@ -1554,6 +1554,48 @@ Context provides a way to pass data through the component tree without having to
 * axios
 	to make API calls from react to RESTful web server to fetch JSON
 
+===
+JSX needs a single root element
+
+function MyComp() {
+	return <div>
+			<A />
+			<B />
+			<C />
+	</div>
+}
+
+function OtherComp() {
+	return <div>
+			<E />
+			<F />
+		 </div>
+}
+
+Above code introduces lots of <div /> tags
+
+React.Fragment
+
+function MyComp() {
+	return <React.Fragment>
+				<A />
+				<B />
+				<C />
+	</React.Fragment>
+}
+
+OR
+
+
+function MyComp() {
+	return <>
+				<A />
+				<B />
+				<C />
+	</>
+}
+
+
 =================================================================================
 var PersonContext = React.createContext();
 
@@ -1618,4 +1660,47 @@ download and extract "share.zip" from "Github/Banuprakash/REACT"
 
 
 =============
+
+create 
+
+ProductList.js
+Product.js
+Cart.js
+CartList.js
+Default.js
+Details.js
+
+=============
+
+include "bootstrap"
+
+==
+
+ Configure Routes in App.js
+  <Router>
+        <Routes>
+          <Route path="/" element={<ProductList />} />
+           <Route path="/products" element={<ProductList />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="*" element={<Default />} />
+        </Routes>
+      </Router>
+
+Use Link instead of "a href" for Routes
+<a href="resource"> </a> is for server side routing
+
+<Link > uses client side routing
+
+
+<Link to="/products" className="nav-link">   
+                    Products
+</Link>  
+
+===============
+
+
+App.js ==> lazy() and Suspense for Lazy loading Modules 
+
+=======================================
 

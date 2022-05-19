@@ -1,9 +1,19 @@
 import { Component } from "react";
+import { ProductConsumer } from "./Context";
+import Product from "./Product";
 
 export default class ProductList extends Component {
     render() {
-        return <>
-            <h1>ProductList !!!</h1>
-        </>
+        return <div className="container">
+            <div className="row">
+                <ProductConsumer>
+                    {
+                        value => {
+                            return value.products.map(p => <Product key={p.id} product={p} />)
+                        }
+                    }
+                </ProductConsumer>
+            </div>
+           </div>
     }
 }

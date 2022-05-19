@@ -1804,3 +1804,37 @@ export default function Product(props) {
 }
 
 ========================
+https://www.codementor.io/@dariogarciamoya/understanding-this-in-javascript-with-arrow-functions-gcpjwfyuc
+
+Assignment: 
+
+Context.js
+
+increment = (id) => {
+	let prd = this.getProduct(id);
+	prd.count ++;
+	prd.total = prd.price * prd.count;
+
+	this.setState({
+		cart: this.state.cart; // re-render
+	})
+}
+
+decrement() ===> 
+
+need to bind to CartList.js + and - button
+
+=====================================================
+
+1) Fake RESTful webserver
+
+npm i axios
+
+2) Perrrmance ==> re-render
+3) Functional components ==> Hooks
+4) HOC
+5) State Management with Redux, Thunk and Saga
+
+======================================================
+
+

@@ -1,12 +1,14 @@
-import React, { Component}  from 'react';
-import {storeProducts} from '../data';
+import React, { Component } from 'react';
+import { storeProducts } from '../data';
+
 const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
     state = {
         products: [],
-        detailProduct: {}
-    }    
+        detailProduct: {},
+        cart: []
+    }
     // life cycle method for API calls
     componentDidMount() {
         this.setProducts();
@@ -15,7 +17,7 @@ class ProductProvider extends Component {
     setProducts = () => {
         let prds = [];
         storeProducts.forEach(p => {
-            prds.push({...p});
+            prds.push({ ...p });
         });
         this.setState({
             products: prds
@@ -23,7 +25,7 @@ class ProductProvider extends Component {
     }
 
     getProduct = (id) => {
-        let prd = this.state.products.filter(p => p.id === id) [0];
+        let prd = this.state.products.filter(p => p.id === id)[0];
         return prd;
     }
 
@@ -33,9 +35,24 @@ class ProductProvider extends Component {
         })
     }
 
+    addToCart(id) {
+        let prd = this.getProduct(id);
+        prd.inCart = true;
+        prd.count = 1;
+        prd.total = prd.price;
+        let cpy = this.state.cart;
+        cpy.push(prd);
+
+        this.setState({
+            cart: cpy
+        })
+    }
     render() {
-        return <ProductContext.Provider value={{...this.state, 
-            handleDetail: this.handleDetail}}>
+        return <ProductContext.Provider value={{
+            ...this.state,
+            addToCart: this.addToCart.bind(this),
+            handleDetail: this.handleDetail
+        }}>
             {this.props.children}
         </ProductContext.Provider>
     }
@@ -43,4 +60,4 @@ class ProductProvider extends Component {
 
 const ProductConsumer = ProductContext.Consumer;
 
-export {ProductProvider, ProductConsumer, ProductContext};
+export { ProductProvider, ProductConsumer, ProductContext };

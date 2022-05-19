@@ -1788,5 +1788,19 @@ In Functional Components we can use Hooks
 
 ===========================
 
-Resume @ 4:05
+Product.js using useContext()
 
+
+export default function Product(props) {
+        let {id, img} = props.product; // from parent
+        let {handleDetail} = React.useContext(ProductContext);
+        return <div className="col-md-4 col-lg-3">
+            <div className="card my-2">
+                <div className="img-container">
+                    <img src={img} onClick={() => handleDetail(id)}/>
+                </div>
+            </div>
+        </div>
+}
+
+========================

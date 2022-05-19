@@ -1676,6 +1676,7 @@ include "bootstrap"
 
 ==
 
+```
  Configure Routes in App.js
   <Router>
         <Routes>
@@ -1697,6 +1698,7 @@ Use Link instead of "a href" for Routes
                     Products
 </Link>  
 
+```
 ===============
 
 
@@ -1712,7 +1714,7 @@ Make API calls in componentDidMount() and not in render() ==> Why? FCP
 
 ====================
 
-
+```
 class MyComp extends Component {
 	state = {
 		stockPrice : "Fetching..."
@@ -1740,6 +1742,7 @@ class MyComp extends Component {
 	}
 }
 
+```
 
 UI will show Fetching ... ==> componet did mount
 Componet will re-render with latest value coming from server
@@ -1750,7 +1753,7 @@ Context.js
 index.js
 ProductList.js
 Product.js
-
+```
 import { Component } from "react";
 import { ProductConsumer } from "./Context";
 
@@ -1778,7 +1781,7 @@ export default class Product extends Component {
         </div>
     }
 }
-
+```
 ===
 
 In Functional Components we can use Hooks
@@ -1788,9 +1791,10 @@ In Functional Components we can use Hooks
 
 ===========================
 
+```
 Product.js using useContext()
 
-
+```
 export default function Product(props) {
         let {id, img} = props.product; // from parent
         let {handleDetail} = React.useContext(ProductContext);
@@ -1803,6 +1807,8 @@ export default function Product(props) {
         </div>
 }
 
+```
+
 ========================
 https://www.codementor.io/@dariogarciamoya/understanding-this-in-javascript-with-arrow-functions-gcpjwfyuc
 
@@ -1810,6 +1816,7 @@ Assignment:
 
 Context.js
 
+```
 increment = (id) => {
 	let prd = this.getProduct(id);
 	prd.count ++;
@@ -1820,6 +1827,7 @@ increment = (id) => {
 	})
 }
 
+```
 decrement() ===> 
 
 need to bind to CartList.js + and - button

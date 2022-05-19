@@ -1606,3 +1606,16 @@ ReactDOM.render(<App/>, document.getElementById("root"))
 	<D/>
 	<E/>
 </PersonProvider>
+
+=====================================
+
+download and extract "share.zip" from "Github/Banuprakash/REACT"
+1) copy "img" folder into "public"
+2) copy "data.js" into "src" folder
+3) copy "Button.js" into "components" folder
+3) copy "Navbar.js" into "components" folder
+4) overwrite "src/App.css"
+
+
+=============
+

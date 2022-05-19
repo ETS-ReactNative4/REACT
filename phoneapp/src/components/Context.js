@@ -4,7 +4,8 @@ const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
     state = {
-        products: []
+        products: [],
+        detailProduct: {}
     }    
     // life cycle method for API calls
     componentDidMount() {
@@ -21,8 +22,20 @@ class ProductProvider extends Component {
         });
     }
 
+    getProduct = (id) => {
+        let prd = this.state.products.filter(p => p.id === id) [0];
+        return prd;
+    }
+
+    handleDetail = (id) => {
+        this.setState({
+            detailProduct: this.getProduct(id)
+        })
+    }
+
     render() {
-        return <ProductContext.Provider value={{...this.state}}>
+        return <ProductContext.Provider value={{...this.state, 
+            handleDetail: this.handleDetail}}>
             {this.props.children}
         </ProductContext.Provider>
     }

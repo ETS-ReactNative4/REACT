@@ -1704,3 +1704,89 @@ App.js ==> lazy() and Suspense for Lazy loading Modules
 
 =======================================
 
+component gets created consturctor() ==> render() ==> componentDidMount() ==> state changes ==> render()
+
+render() ==> render view with mock content; then make API call
+
+Make API calls in componentDidMount() and not in render() ==> Why? FCP
+
+====================
+
+
+class MyComp extends Component {
+	state = {
+		stockPrice : "Fetching..."
+	}
+
+	constructor(props){
+		super(props);
+		this.setState({
+			stockPrice: "Fetching ..."
+		});
+	}
+
+	render() {
+		<>
+			{this.state.stockPrice}
+		</>
+	}
+
+	componentDidMount(){
+		http://serviceprovider:8080/stockPrice?name=SOCG
+			==> 
+			this.setState({
+				stockPrice: value from server
+			})
+	}
+}
+
+
+UI will show Fetching ... ==> componet did mount
+Componet will re-render with latest value coming from server
+
+=====================================
+App.js ==> Lazy loading ..
+Context.js
+index.js
+ProductList.js
+Product.js
+
+import { Component } from "react";
+import { ProductConsumer } from "./Context";
+
+export default class Product extends Component {
+
+    render() {
+        let {id, img} = this.props.product; // from parent
+        return <div className="col-md-4 col-lg-3">
+            <div className="card my-2">
+                <div className="img-container">
+                    <ProductConsumer>
+                        {
+                            value => {
+                                return ( 
+                                    <>
+                                        <img src={img} onClick={() => value.handleDetail(id)}/>
+                                    </>
+                                )
+                            }
+                        }
+                    </ProductConsumer>
+                    
+                </div>
+            </div>
+        </div>
+    }
+}
+
+===
+
+In Functional Components we can use Hooks
+  let {detailProduct} = React.useContext(ProductContext);
+
+  above code is same as Context Consumer
+
+===========================
+
+Resume @ 4:05
+

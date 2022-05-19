@@ -1423,8 +1423,15 @@ All the above methods we also have
 1) queryByRole("button") 
 2) findByRole("button") ==> use this in case if components are created async way [ Promise ]
 
+to return multiple elements:
+
+3) getAllBy
+4) queryAllBy
+5) findAllBy
 getBy* throws an error if the element is not found and queryBy* does not and returns null.
 
-==========
+=========================
+
+
 
 

@@ -2477,6 +2477,23 @@ In my React component
 <button onClick={() => props.addProduct({product data})}>Add</button>
 
 =====================
+https://createapp.dev/
+OR
+
+npm i -g yarn
+
+yarn create-react myapp
+
+npx create-react-app reduxexample
+reduxexample>npm i redux react-redux
+
+Redux Dev Tools:
+https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en
+
+==========================================
+
+
+ 
 
 
 

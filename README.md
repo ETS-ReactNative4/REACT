@@ -2492,6 +2492,12 @@ https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfk
 
 ==========================================
 
+npm i learnyounode -g
+npm install -g javascripting
+npm install -g functional-javascript-workshop
+
+===================================================
+
 
  
 

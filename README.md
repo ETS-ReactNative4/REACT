@@ -1846,3 +1846,64 @@ npm i axios
 ======================================================
 
 
+Day 4
+
+Reacap:
+* styled-components ==> nothing bu DOM elements or React components for which styling can be done based on props
+* react-router-dom ==> BrowserRouter, Routes, Route [ path and element], Link, lazy() and Suspense
+* ReactContext ==> placeholder for data [ Provider and Consumer] ==> avoid passing props thro intermediary components [16.4]
+ProductContext, CartContext, UserContext
+* bootstrap and font-awesome
+
+-------------
+axios with JWT
+
+You can send a get request with Headers (for authentication with jwt for example):
+
+axios.get('https://example.com/getSomething', {
+ headers: {
+   Authorization: 'Bearer ' + token //the token is a variable which holds the token
+ }
+})
+
+----------
+
+Backend RESTful web services ==> Spring Boot, ExpressJS, ASP.NET, PHP
+
+Fake RESTful 
+JSON Server: Get a full fake REST API with zero coding
+
+data.json ==> this acts like my database [ CRUD ]
+
+{
+  "posts": [
+    { "id": 1, "title": "json-server", "author": "typicode" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" }
+}
+
+GET, POST, PUT, DELETE
+
+http://server:port/posts
+http://server:port/comments
+http://server:port/profile
+
+
+npx json-server --port 1234 --watch data.json
+
+Browser:
+http://localhost:1234/products
+http://localhost:1234/products/2
+http://localhost:1234/products?company=apple
+
+http://localhost:1234/customers
+http://localhost:1234/orders
+
+
+npm run build
+==> generate a build code in "build" folder ==> take this contents to any server and deploy it
+
+---------------

@@ -2058,7 +2058,7 @@ React Hooks:
 1) useContext() ==> hook used in functional component to act like Consumer of ReactContext
 2) useState()
 	let's us use state in functional components
-
+```
 function App() {
 	let [count, setCount] = React.useState(0);
 	let [user, setUser] = React.useState("Banu");
@@ -2070,10 +2070,10 @@ function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
-
+```
 
 same as:
-
+```
 class App extends Component {
 	state = {
 		count : 0,
@@ -2093,7 +2093,7 @@ class App extends Component {
 	}
 }
 
-
+```
 3) useReducer
 	==> if state is complex / conditionally mutate the state
 
@@ -2124,7 +2124,7 @@ class App extends Component {
 
 	-----------------------------
 
-
+```
 	let initalState = {count: 0};
 
 	let countReducer = (state, action) => {
@@ -2148,13 +2148,13 @@ class App extends Component {
 	</>	
 	}
 	ReactDOM.render(<App />, document.getElementById('root'))
-
+```
 	-------------------
 
 4) useEffect()
 	simulate class component life-cycle methods; componentDidMount(), componentDidUpdate()
 
-
+```
 function App() {
 	let [count, setCount] = React.useState(0);
 	let [user, setUser] = React.useState("Banu");
@@ -2172,13 +2172,186 @@ function App() {
  	// called once on mount and only when name changes
 	React.useEffect(() => {
 		console.log("3. Effect", count)
-	}, [name]);
+	}, [name, count]);
 
 	return <>
 			Count {count} User {user} <br />
 			<button onClick={() => setCount(count + 1)}>Click </button>
 	</>
 }
-
+```
 ==============
 
+5) useMemo() is simialr to memoize() code we wrote on day 1
+	to memoze a variable which is returned after heavy cpu intense operation
+	like fibanocci
+
+	const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+	
+	{memoizedValue}
+	
+	```
+	const memoizedValue = useMemo(() => fibannocci(number), [number]);
+
+	let [number,setNumber] = React.useState(0);
+	getFib() {
+		// read the value of textbox
+		setNumber(data from textbox);
+	}
+	<input type="text" />	<!-- 34 --> 
+	<button onClick={() => getFib()}>Get Fibanocci REsult {memoizedValue}</div>
+	```
+=============
+
+	React.memo() --> is to memozie the state and props of functional component
+
+6) useCallback()
+
+useCallback will return a memoized version of the callback
+
+Without useCallback() and memo()
+
+```
+
+
+function Title() {
+  console.log('Rendering Title')
+  return (
+    <h2>
+      Example: Title
+    </h2>
+  )
+};
+
+
+function Button({ handleClick, children }) {
+  console.log('Rendering button - ', children)
+  return (
+    <button onClick={handleClick}>
+      {children}
+    </button>
+  )
+}
+
+function Count({ text, count }) {
+	console.log(`Rendering ${text}`)
+	return <div>{text} - {count}</div>
+}
+
+
+function ParentComponent() {
+	const [age, setAge] = React.useState(25)
+	const [salary, setSalary] = React.useState(50000)
+
+	 const incrementAge = () => {
+		setAge(age + 1)
+	};
+
+	const incrementSalary = () => {
+   		setSalary(salary + 1000)
+	}
+  
+	return (
+		<div>
+			<Title />
+			<Count text="Age" count={age} />
+			<Button handleClick={incrementAge}>Increment Age</Button>
+			<Count text="Salary" count={salary} />
+			<Button handleClick={incrementSalary}>Increment Salary</Button>
+		</div>
+	)
+}
+
+ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
+
+```
+
+Using React.memo()
+
+function Title() {
+  console.log('Rendering Title')
+  return (
+    <h2>
+      Example: Title
+    </h2>
+  )
+};
+
+const MemoTitle = React.memo(Title);
+
+function Button({ handleClick, children }) {
+  console.log('Rendering button - ', children)
+  return (
+    <button onClick={handleClick}>
+      {children}
+    </button>
+  )
+}
+
+const MemoButton = React.memo(Button);
+
+function Count({ text, count }) {
+	console.log(`Rendering ${text}`)
+	return <div>{text} - {count}</div>
+}
+
+const MemoCount = React.memo(Count);
+
+function ParentComponent() {
+	const [age, setAge] = React.useState(25)
+	const [salary, setSalary] = React.useState(50000)
+
+	 const incrementAge = () => {
+		setAge(age + 1)
+	};
+
+	const incrementSalary = () => {
+   		setSalary(salary + 1000)
+	}
+  
+	return (
+		<div>
+			<MemoTitle />
+			<MemoCount text="Age" count={age} />
+			<MemoButton handleClick={incrementAge}>Increment Age</MemoButton>
+			<MemoCount text="Salary" count={salary} />
+			<MemoButton handleClick={incrementSalary}>Increment Salary</MemoButton>
+		</div>
+	)
+}
+
+ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
+
+===
+
+useCallback()
+
+```
+
+function ParentComponent() {
+	const [age, setAge] = React.useState(25)
+	const [salary, setSalary] = React.useState(50000)
+
+	 const incrementAge = React.useCallback(() => {
+		setAge(age + 1)
+	},[age]);
+
+	const incrementSalary = React.useCallback(() => {
+   		setSalary(salary + 1000)
+	}, [salary]);
+  
+	return (
+		<div>
+			<MemoTitle />
+			<MemoCount text="Age" count={age} />
+			<MemoButton handleClick={incrementAge}>Increment Age</MemoButton>
+			<MemoCount text="Salary" count={salary} />
+			<MemoButton handleClick={incrementSalary}>Increment Salary</MemoButton>
+		</div>
+	)
+}
+
+ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
+
+```

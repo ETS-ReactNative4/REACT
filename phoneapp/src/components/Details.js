@@ -1,6 +1,8 @@
 import React  from "react";
 import { ProductContext } from "./Context";
 
+
+
 export default function Details() {
     let {detailProduct} = React.useContext(ProductContext); // React 16.8+
     let image = "../" + detailProduct.img;

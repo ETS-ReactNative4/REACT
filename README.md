@@ -2355,3 +2355,131 @@ function ParentComponent() {
 ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
 
 ```
+
+7) useParams()
+
+<Route path="/details/:id" element={<Details />} />
+
+http://localhost:3000/details/5
+
+
+import React  from "react";
+import axios from 'axios';
+import {useParams} from 'react-router-dom';
+
+export default function Details() {
+	let [product, setProduct] = React.useState({});
+   	let {id} = useParams();
+
+   	React.useEffect(() => {
+   		axios.get("http://localhost:1234/products/" + id). then( response => {
+   			setProduct(response.data);
+   		})
+   	}, [id]);
+
+
+     return <>
+            <h1>Details!!!</h1>
+            <h2>Company: {product.company}</h2>
+            <h2>Price: {product.price}</h2>
+            <h2>title: {product.title}</h2>
+            <img src ={product.img} />
+        </>
+    
+}
+
+=========================
+
+8) useRef(null)
+
+for React Reference similar to React.createRef() in class component
+
+class App extends React.Component {
+	emailRef = React.createRef(); // refernence ==> pointer
+
+	render() {
+		return <>
+			<input type="text" ref ={this.emailRef} />
+			<button onClick = {() => this.doTask()}>Get Data</button>
+		</>
+	}
+
+	doTask() {
+		console.log(this.emailRef.current.value);
+		this.emailRef.current.focus();
+	}
+}
+
+============================================================================
+
+State management with Redux
+
+npx create-react-app reduxapp
+ 
+React is not good for State management ; good for view handling ==> View Library
+
+Redux ==> central state managment mechanism
+
+Redux Characters:
+
+1) Action Creator
+	is a function which takes data from view and returns an action object
+
+	Action object is one which is in the format of {type: "ADD_TO_CART", payload : data}
+
+2) Store
+	is a place where state resides
+	Redux has a single store => Single Source of Truth
+
+3) dispatch(action) is intercepted by Store
+
+4) Reducer	
+	* are functions which take state from store and action from dispatch
+	* replicate the state
+	* Mutate
+	* return back the changed data to store
+	* store updates
+
+	a) RootReducer {"type": "ADD_TO_CART", payload:...}
+	b) Many Reducers ==> ProductReducer, CartReducer, CustomerReducer
+5) Smart Components ==> React components which understand Redux eco-sytem [ can handshake with redux]
+	can store the redux state into context
+	or pass data in the form of "props" to view components
+6) View Components ==> just render data, handle actions
+
+--
+react-redux bridge:
+ The connect() function connects a React component to a Redux store.  
+ function connect(mapStateToProps, mapDispatchToProps)
+
+// argument is redux state from store
+ const mapStateToProps = (state) => {
+ 	return {
+ 		products: state.elements
+ 	}
+ }
+
+ const mapDispatchToProps = (dispatch) => {
+ 	return {
+ 		addProduct: prd => dispatch({type:"ADD_PRODUCT", payload: {...}}),
+ 		deleteProduct: id => dispatch({type:"DELETE_PRODUCT", payload: {id: id}})
+ 	}
+ }
+
+connect(mapStateToProps, mapDispatchToProps);
+
+In my React component
+	props.products refers of "state.elements" present in "redux store"
+	{
+		props.products.map(p => ...)
+	}
+
+<button onClick={() => props.addProduct({product data})}>Add</button>
+
+=====================
+
+
+
+	
+
+

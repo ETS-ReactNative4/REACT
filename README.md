@@ -1957,6 +1957,15 @@ class Child extends React.Component {
   }
 }
 
+OR
+
+class Child extends React.PureComponent {
+   render() {
+    console.log("child renders");
+    return <h1> Child {this.props.name} </h1>
+  }
+}
+
 =====
 
 Avoid Re-render in functional Components
@@ -1993,5 +2002,183 @@ class Parent extends React.Component {
 
 ReactDOM.render(<Parent />, document.getElementById('root'))
 
-============================================
+====================================================================
+
+class ErrorBoundary extends React.Component {
+state = {
+	hasError: false
+} 
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.log(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+        return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children; 
+  }
+}
+
+
+<ErrorBoundary>
+	<A />
+	<B />
+	<C />
+</ErrorBoundary>
+
+
+
+<ErrorBoundary>
+	<D />
+	<E />
+</ErrorBoundary>
+
+==================================================================
+
+React Hooks: Hooks are a new addition in React 16.8 [useXXXX()]
+They let you use state and other React features of class without writing a class.
+* class Component contains:
+1) state
+2) methods
+3) life-cycle methods => componentDidMount, componentDidUpdate(), ...
+
+class components are heavy compared to functional components [ extends Component ]
+
+16.8 onwards ==> 98% will be functional components
+
+React Hooks:
+
+1) useContext() ==> hook used in functional component to act like Consumer of ReactContext
+2) useState()
+	let's us use state in functional components
+
+function App() {
+	let [count, setCount] = React.useState(0);
+	let [user, setUser] = React.useState("Banu");
+
+	return <>
+			Count {count} User {user} <br />
+			<button onClick={() => setCount(count + 1)}>Click </button>
+	</>
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
+
+
+same as:
+
+class App extends Component {
+	state = {
+		count : 0,
+		user : ""
+	}
+
+	setCount(no) {
+		this.setState( {
+			count: no
+		})
+	}
+
+	setUser(u) {
+		this.setState({
+			user: u
+		})
+	}
+}
+
+
+3) useReducer
+	==> if state is complex / conditionally mutate the state
+
+	state = {
+		cart: [{id, name, price, qty, count}, {id, name, price, qty, count} ]
+	}
+
+	Actions:
+	"ADD_TO_CART"
+	"REMOVE_FROM_CART"
+	"REMOVE_CART"
+	"INCREMENT"
+
+	uses Action objects [ type and payload/data]
+		{
+			type: "REMOVE_FROM_CART",
+			payload: 4
+		}
+
+		{
+			type: "ADD_TO_CART",
+			payload: {"id": 1, "name": "some", "qty" : 4}
+		}
+
+		{
+			type:"REMOVE_CART"
+		}
+
+	-----------------------------
+
+
+	let initalState = {count: 0};
+
+	let countReducer = (state, action) => {
+		switch(action.type) {
+			case "INCREMENT": return {count : state.count + action.payload}
+			case "DECREMENT" : return {count : state.count - 1}
+			default: return state;
+		}
+	}
+
+	function App() {
+		let [state, dispatch] = React.useReducer(countReducer, initalState);
+
+		function handleInc() {
+			let action = {"type": "INCREMENT", payload: 10};
+			dispatch(action);
+		}
+		return <>
+			Count {state.count}   <br />
+			<button onClick={handleInc}>Click </button>
+	</>	
+	}
+	ReactDOM.render(<App />, document.getElementById('root'))
+
+	-------------------
+
+4) useEffect()
+	simulate class component life-cycle methods; componentDidMount(), componentDidUpdate()
+
+
+function App() {
+	let [count, setCount] = React.useState(0);
+	let [user, setUser] = React.useState("Banu");
+
+	// similar to componentDidMount ==> called once 
+	React.useEffect(() => {
+		console.log("1. Effect", count)
+	}, []);
+
+	// similar to componentDidUpdate ==> called every time when state or props changes 
+	React.useEffect(() => {
+		console.log("2. Effect", count)
+	});
+
+ 	// called once on mount and only when name changes
+	React.useEffect(() => {
+		console.log("3. Effect", count)
+	}, [name]);
+
+	return <>
+			Count {count} User {user} <br />
+			<button onClick={() => setCount(count + 1)}>Click </button>
+	</>
+}
+
+==============
 

@@ -51,6 +51,9 @@ class ProductProvider extends Component {
 
         axios.post("http://localhost:1234/orders", order).then((data) => {
             console.log("Order placed!! " , data);
+            this.setState({
+                cart: []
+            })    
         })
     }
 

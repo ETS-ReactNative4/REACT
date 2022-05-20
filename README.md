@@ -1906,4 +1906,92 @@ http://localhost:1234/orders
 npm run build
 ==> generate a build code in "build" folder ==> take this contents to any server and deploy it
 
----------------
+-----------------------------------------------------------
+
+Re-Render of Components
+------------------------
+Whenever a state or props change a component re-renders and it's children also renders
+class Child extends React.Component {
+  render() {
+    console.log("child renders");
+    return <h1> Child {this.props.name} </h1>
+  }
+}
+
+class Parent extends React.Component {
+  state = {
+    count : 0,
+    name : "Banu"
+  }
+  increment() {
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+  
+  render() {
+    console.log("Parent renders");
+    return <>
+      Name : {this.state.name} <br />
+      Count : {this.state.count} <br />
+      <Child name={this.state.name} />
+      <button onClick={() => this.increment()}>Inc</button>
+    </>
+  }
+}
+
+
+ReactDOM.render(<Parent />, document.getElementById('root'))
+
+
+===
+
+Avoid Re-render
+class Child extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.name !== nextProps.name;
+  }
+  render() {
+    console.log("child renders");
+    return <h1> Child {this.props.name} </h1>
+  }
+}
+
+=====
+
+Avoid Re-render in functional Components
+
+function Child(props) {
+    console.log("child renders");
+    return <h1> Child {props.name} </h1>
+}
+
+const MemoChild = React.memo(Child);
+
+class Parent extends React.Component {
+  state = {
+    count : 0,
+    name : "Banu"
+  }
+  increment() {
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+  
+  render() {
+    console.log("Parent renders");
+    return <>
+      Name : {this.state.name} <br />
+      Count : {this.state.count} <br />
+      <MemoChild name={this.state.name} />
+      <button onClick={() => this.increment()}>Inc</button>
+    </>
+  }
+}
+
+
+ReactDOM.render(<Parent />, document.getElementById('root'))
+
+============================================
+
